@@ -1,0 +1,15 @@
+<!--<pre>{{dogList$ | async | json}}</pre>-->
+
+<mat-selection-list #list *ngIf="(dogList$ | async)" (selectionChange)="onSelectionChanged()">
+  <mat-list-option *ngFor="let item of (dogList$ | async)" [value]="item">
+    <div>{{item}}</div>
+  </mat-list-option>
+</mat-selection-list>
+
+<p class="mt-3 ml-3">Favorite Dogs: <ng-container *ngFor="let dog of onSelectionChanged()">{{ dog + ' ' }}</ng-container></p>
+
+<!--<form [formGroup]="form">-->
+  <!--<mat-form-field>-->
+    <!--<input matInput formControlName="add">-->
+  <!--</mat-form-field>-->
+<!--</form>-->
