@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Dog } from '../models/dog';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Dogge } from '../models/dogge';
+import { DogUtil } from '../shared/utils/dog.util';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +22,9 @@ export class DogService {
           return Object.keys(res.message);
         }
       ));
+  }
+
+  loadDogList(): Observable<Dogge[]> {
+    return of(DogUtil.getDogList());
   }
 }
