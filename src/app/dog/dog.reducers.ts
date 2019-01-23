@@ -1,5 +1,4 @@
 import { DogActions, LOAD_DOG_LIST, LOAD_DOG_LIST_FAIL, LOAD_DOG_LIST_SUCCESS } from './dog.actions';
-import { Dog } from '../models/dog';
 
 export interface DogState {
   dogList: string[];
