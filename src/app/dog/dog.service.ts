@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Dog } from '../models/dog';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -16,15 +15,6 @@ import { singleDog } from '../schemas/schemas';
 export class DogService {
 
   constructor(private http: HttpClient) {
-  }
-
-  loadDogs(): Observable<string[]> {
-    return this.http.get('https://dog.ceo/api/breeds/list/all').pipe(
-      map((res: Dog) => {
-          console.log(Object.keys(res.message));
-          return Object.keys(res.message);
-        }
-      ));
   }
 
   loadDogList(): Observable<any> {
