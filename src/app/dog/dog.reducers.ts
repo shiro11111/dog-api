@@ -3,12 +3,10 @@ import { Dog } from '../models/dog';
 
 export interface DogState {
   dogList: string[];
-  dog: Dog;
 }
 
 const initialState: DogState = {
   dogList: [],
-  dog: null
 };
 
 export function dogReducer(state = initialState, action: DogActions) {

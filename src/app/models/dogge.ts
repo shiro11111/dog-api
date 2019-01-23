@@ -1,7 +1,7 @@
-import { SingleDog } from './singleDog';
 
-export interface Dogge {
+
+export interface List<T> {
   results: number;
-  singleDog: SingleDog;
+  list: T[];
 }
 

@@ -7,6 +7,7 @@ import { DogState } from '../dog.reducers';
 import { map } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatChipListChange, MatChipSelectionChange, MatListOption, MatSelectionList, MatSelectionListChange } from '@angular/material';
+import { DogService } from '../dog.service';
 
 @Component({
   selector: 'app-dog-list',
@@ -21,7 +22,8 @@ export class DogListComponent implements OnInit {
   form: FormGroup;
 
   constructor(private store: Store<AppState>,
-              private fb: FormBuilder) {
+              private fb: FormBuilder,
+              private service: DogService) {
   }
 
   ngOnInit() {
@@ -30,6 +32,10 @@ export class DogListComponent implements OnInit {
     this.dogList$ = this.store.select('dogState').pipe(
       map((state: DogState) => state && state.dogList)
     );
+
+    this.service.loadDogList().subscribe(data => {
+      console.log(data);
+    });
 
     this.createForm();
   }

@@ -1,10 +1,11 @@
-import { Dogge } from '../../models/dogge';
+import { List } from '../../models/dogge';
+import { SingleDog } from '../../models/singleDog';
 
 export class DogUtil {
-  static getDogList(): Dogge[] {
+  static getDogList(): List<SingleDog> {
     return {
       results: 5,
-      dog: [
+      list: [
         {
         id: 1,
         breed: 'samoyed',

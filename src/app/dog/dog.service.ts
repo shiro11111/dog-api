@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { Dog } from '../models/dog';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Dogge } from '../models/dogge';
+import { filter, map } from 'rxjs/operators';
+import { List } from '../models/dogge';
 import { DogUtil } from '../shared/utils/dog.util';
+import { SingleDog } from '../models/singleDog';
+import { normalize } from 'normalizr';
+import { singleDog } from '../schemas/schemas';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +27,11 @@ export class DogService {
       ));
   }
 
-  loadDogList(): Observable<Dogge[]> {
-    return of(DogUtil.getDogList());
+  loadDogList(): Observable<any> {
+    return of(DogUtil.getDogList()).pipe(
+      filter((list: List<SingleDog>) => !!(list && list.results)),
+      map((list: List<SingleDog>) => list && list.list as SingleDog[]),
+      map((list: SingleDog[]) => normalize(list, [singleDog]))
+    );
   }
 }
